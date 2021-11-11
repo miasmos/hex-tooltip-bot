@@ -22,7 +22,7 @@ class AddonsCommand extends Command {
                     this.respond(
                         channel,
                         userstate,
-                        `${DbdUtil.stringifyAddons(model as ItemModel | PlayerModel)} @${
+                        `${DbdUtil.stringifyModelAddons(model as ItemModel | PlayerModel)} @${
                             userstate.username
                         }`
                     );

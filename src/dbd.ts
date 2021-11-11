@@ -17,6 +17,17 @@ import Util from "./util";
 const client = DeadByDaylight();
 
 class DbdUtil {
+    static stringifyNames(models: (AnyModel | undefined)[]): string {
+        return models
+            .reduce((prev, model) => {
+                if (!model) {
+                    return prev;
+                }
+                return `${prev}, [[${model.name}]]`;
+            }, "")
+            .substring(2);
+    }
+
     static stringifyPerk(model: PerkModel): string {
         return `[[${model.name}]] | T${model.tier} | ${DbdUtil.rarity(model.rarity)} | ${
             model.owner.name || "All"
@@ -36,7 +47,7 @@ class DbdUtil {
     }
 
     static stringifyMap(model: MapModel): string {
-        return `[[${model.name}]] | ${model.realm?.owner?.name} | ${model.realm}`;
+        return `[[${model.name}]] | ${model.realm?.owner?.name} | ${model.realm.name}`;
     }
 
     static stringifyOffering(model: OfferingModel): string {
@@ -55,13 +66,13 @@ class DbdUtil {
         return `[[${model.name}]] | ${model.owner.name} | ${Util.stripTags(model.description)}`;
     }
 
-    static stringifyPerks(model: PlayerModel): string {
+    static stringifyModelPerks(model: PlayerModel): string {
         return `[[${model.name}]] | ${model.perks
             .reduce((prev, perk) => `${prev}, [[${perk.name}]]`, "")
             .substring(2)}`;
     }
 
-    static stringifyAddons(model: PlayerModel | ItemModel): string {
+    static stringifyModelAddons(model: PlayerModel | ItemModel): string {
         return `[[${model.name}]] | ${model.addons
             .reduce((prev, perk) => `${prev}, [[${perk.name}]]`, "")
             .substring(2)}`;
@@ -128,6 +139,96 @@ class DbdUtil {
                 return "Intermediate";
             default:
                 return "None";
+        }
+    }
+
+    static getModifier(modifier: string): ModifierType {
+        const lower = modifier.toLowerCase();
+        switch (lower) {
+            case "power":
+                return ModifierType.Power;
+            case "item":
+                return ModifierType.Item;
+            case "addon":
+                return ModifierType.Addon;
+            case "offering":
+                return ModifierType.Offering;
+            case "perk":
+                return ModifierType.Perk;
+            case "player":
+                return ModifierType.Player;
+            case "map":
+                return ModifierType.Map;
+            default:
+                return ModifierType.None;
+        }
+    }
+
+    static getPlayer(player: string): PlayerType {
+        const lower = player.toLowerCase();
+        switch (lower) {
+            case "killer":
+                return PlayerType.Killer;
+            case "survivor":
+                return PlayerType.Survivor;
+            default:
+                return PlayerType.None;
+        }
+    }
+
+    static random(modifier: ModifierType, player?: PlayerType): AnyModel | undefined {
+        switch (modifier as unknown as ModifierType) {
+            case ModifierType.Addon: {
+                if (player === PlayerType.Killer) {
+                    return client.randomKillerAddon() as unknown as AnyModel;
+                }
+                if (player === PlayerType.Survivor) {
+                    return client.randomSurvivorAddon() as unknown as AnyModel;
+                }
+                return client.randomAddon() as unknown as AnyModel;
+            }
+            case ModifierType.Item:
+                return client.randomItem();
+            case ModifierType.Map:
+                return client.randomMap();
+            case ModifierType.Offering: {
+                if (player === PlayerType.Killer) {
+                    return client.randomKillerOffering();
+                }
+                if (player === PlayerType.Survivor) {
+                    return client.randomSurvivorOffering();
+                }
+                return client.randomOffering();
+            }
+            case ModifierType.Perk: {
+                if (player === PlayerType.Killer) {
+                    return client.randomKillerPerk();
+                }
+                if (player === PlayerType.Survivor) {
+                    return client.randomSurvivorPerk();
+                }
+                return client.randomPerk();
+            }
+            case ModifierType.Player: {
+                if (player === PlayerType.Killer) {
+                    return client.randomKiller();
+                }
+                if (player === PlayerType.Survivor) {
+                    return client.randomSurvivor();
+                }
+                return client.randomPlayer();
+            }
+            case ModifierType.Power:
+                return client.randomPower();
+            default: {
+                if (player === PlayerType.Killer) {
+                    return client.randomKiller();
+                }
+                if (player === PlayerType.Survivor) {
+                    return client.randomSurvivor();
+                }
+                return client.random([], []);
+            }
         }
     }
 }

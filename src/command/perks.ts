@@ -20,7 +20,7 @@ class PerksCommand extends Command {
             this.respond(
                 channel,
                 userstate,
-                `${DbdUtil.stringifyPerks(player)} @${userstate.username}`
+                `${DbdUtil.stringifyModelPerks(player)} @${userstate.username}`
             );
         }
     }
