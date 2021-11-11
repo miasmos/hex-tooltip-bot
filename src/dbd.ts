@@ -47,7 +47,7 @@ class DbdUtil {
     }
 
     static stringifyMap(model: MapModel): string {
-        return `[[${model.name}]] | ${model.realm?.owner?.name} | ${model.realm.name}`;
+        return `[[${model.name}]] | [[${model.realm?.owner?.name}]] | [[${model.realm.name}]]`;
     }
 
     static stringifyOffering(model: OfferingModel): string {
@@ -63,7 +63,7 @@ class DbdUtil {
     }
 
     static stringifyPower(model: PowerModel): string {
-        return `[[${model.name}]] | ${model.owner.name} | ${Util.stripTags(model.description)}`;
+        return `[[${model.name}]] | [[${model.owner.name}]] | ${Util.stripTags(model.description)}`;
     }
 
     static stringifyModelPerks(model: PlayerModel): string {
