@@ -8,6 +8,15 @@ import JoinCommand from "./command/join";
 import LeaveCommand from "./command/leave";
 import PerkCommand from "./command/perk";
 import OwnerCommand from "./command/owner";
+import AddonCommand from "./command/addon";
+import ItemCommand from "./command/item";
+import KillerCommand from "./command/killer";
+import SurvivorCommand from "./command/survivor";
+import MapCommand from "./command/map";
+import PowerCommand from "./command/power";
+import RarityCommand from "./command/rarity";
+import PerksCommand from "./command/perks";
+import AddonsCommand from "./command/addons";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 
@@ -79,7 +88,16 @@ class Client {
             new BlockCommand(this.clients),
             new AllowCommand(this.clients),
             new PerkCommand(this.clients),
-            new OwnerCommand(this.clients)
+            new OwnerCommand(this.clients),
+            new AddonCommand(this.clients),
+            new ItemCommand(this.clients),
+            new KillerCommand(this.clients),
+            new SurvivorCommand(this.clients),
+            new MapCommand(this.clients),
+            new PowerCommand(this.clients),
+            new RarityCommand(this.clients),
+            new PerksCommand(this.clients),
+            new AddonsCommand(this.clients)
         );
     }
 }

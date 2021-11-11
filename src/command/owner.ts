@@ -18,10 +18,14 @@ class OwnerCommand extends Command {
             this.respond(
                 channel,
                 userstate,
-                `${model.name} is owned by ${model.owner.name} @${userstate.username}`
+                `[[${model.name}]] is owned by [[${model.owner.name}]] @${userstate.username}`
             );
         } else {
-            this.respond(channel, userstate, `${model.name} has no owner @${userstate.username}`);
+            this.respond(
+                channel,
+                userstate,
+                `[[${model.name}]] has no owner @${userstate.username}`
+            );
         }
     }
 }
