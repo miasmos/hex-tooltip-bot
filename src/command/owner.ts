@@ -1,6 +1,6 @@
-import Dbd, { DbdUtil } from "../dbd";
-import Util from "../util";
-import { BotError, ChatType } from "../enum";
+import Dbd from "../dbd";
+import { BotErrorMessage, ChatType } from "../enum";
+import BotError from "../error";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
@@ -13,9 +13,15 @@ class OwnerCommand extends Command {
         const model = Dbd.get(params.join());
 
         if (!model || model.isEmpty) {
-            this.error(channel, userstate, BotError.NotFound);
+            this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "thing"));
+        } else if ("owner" in model && !!model.owner.name) {
+            this.respond(
+                channel,
+                userstate,
+                `${model.name} is owned by ${model.owner.name} @${userstate.username}`
+            );
         } else {
-            this.respond(channel, userstate, DbdUtil.stringify(model));
+            this.respond(channel, userstate, `${model.name} has no owner @${userstate.username}`);
         }
     }
 }

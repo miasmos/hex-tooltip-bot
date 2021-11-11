@@ -7,6 +7,7 @@ import EchoCommand from "./command/echo";
 import JoinCommand from "./command/join";
 import LeaveCommand from "./command/leave";
 import PerkCommand from "./command/perk";
+import OwnerCommand from "./command/owner";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 
@@ -77,7 +78,8 @@ class Client {
             new LeaveCommand(this.clients),
             new BlockCommand(this.clients),
             new AllowCommand(this.clients),
-            new PerkCommand(this.clients)
+            new PerkCommand(this.clients),
+            new OwnerCommand(this.clients)
         );
     }
 }

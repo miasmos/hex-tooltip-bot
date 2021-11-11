@@ -1,4 +1,5 @@
-import { BotError, ChatType } from "../enum";
+import { BotErrorMessage, ChatType } from "../enum";
+import BotError from "../error";
 import { BotClients, UserState } from "../types";
 
 class Command {
@@ -81,7 +82,7 @@ class Command {
         this.respond(
             channel,
             userstate,
-            `@${userstate.username} ${error || BotError.Generic} ${context}`
+            `@${userstate.username} ${error?.message || BotErrorMessage.Generic} ${context}`
         );
     }
 

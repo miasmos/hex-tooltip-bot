@@ -1,4 +1,5 @@
-import { ChatType, BotError, TwitchError } from "../enum";
+import { ChatType, BotErrorMessage, TwitchError } from "../enum";
+import BotError from "../error";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
@@ -16,11 +17,11 @@ class LeaveCommand extends Command {
         }
 
         if (typeof target === "undefined") {
-            this.error(channel, userstate, BotError.MissingChannel);
+            this.error(channel, userstate, new BotError(BotErrorMessage.MissingChannel));
             return;
         }
         if (target.length < 4 || target.length > 25) {
-            this.error(channel, userstate, BotError.InvalidChannel);
+            this.error(channel, userstate, new BotError(BotErrorMessage.InvalidChannel));
             return;
         }
 
@@ -28,17 +29,17 @@ class LeaveCommand extends Command {
             this.clients.main.part(target);
             this.respond(channel, userstate, `Left @${target} 's channel.`);
         } catch (error) {
-            let message: BotError = BotError.None;
+            let message: BotErrorMessage = BotErrorMessage.None;
 
             switch (error) {
                 case TwitchError.NoResponse:
-                    message = BotError.ChannelNotFound;
+                    message = BotErrorMessage.ChannelNotFound;
                     break;
                 default:
                     break;
             }
 
-            this.error(channel, userstate, message);
+            this.error(channel, userstate, new BotError(message));
         }
     }
 }
