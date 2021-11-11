@@ -78,28 +78,11 @@ class Command {
     }
 
     error(channel: string, userstate: UserState, error?: BotError, context = ""): void {
-        let message = "";
-        switch (error) {
-            case BotError.NotAllowed:
-                message = `You can't do that.`;
-                break;
-
-            case BotError.ChannelNotFound:
-                message = "That channel doesn't exist.";
-                break;
-
-            case BotError.MissingChannel:
-                message = "[channel] is required.";
-                break;
-            case BotError.InvalidChannel:
-                message = "Invalid [channel].";
-                break;
-            default:
-                message = "An error occurred.";
-                break;
-        }
-
-        this.respond(channel, userstate, `@${userstate.username} ${message} ${context}`);
+        this.respond(
+            channel,
+            userstate,
+            `@${userstate.username} ${error || BotError.Generic} ${context}`
+        );
     }
 
     respond(channel: string, userstate: UserState, message: string): void {

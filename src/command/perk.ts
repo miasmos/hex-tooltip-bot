@@ -1,4 +1,5 @@
-import Dbd from "../dbd";
+import { PerkModel } from "@stephenpoole/deadbydaylight";
+import Dbd, { DbdUtil } from "../dbd";
 import { BotError, ChatType } from "../enum";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
@@ -9,13 +10,17 @@ class PerkCommand extends Command {
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
-        const [, ...name] = params;
-        const model = Dbd.perk(name.join());
+        const tier = Number.isNaN(params[params.length - 1])
+            ? 3
+            : Number(params[params.length - 1]);
+        const model = Dbd.perk(params.join());
 
-        if (model.isEmpty) {
+        if (!model || model.isEmpty) {
             this.error(channel, userstate, BotError.PerkNotFound);
         } else {
-            this.respond(channel, userstate, `${model.name} | ${model.description}`);
+            const perk = model as PerkModel;
+            perk.setTier(tier);
+            this.respond(channel, userstate, DbdUtil.stringify(perk));
         }
     }
 }

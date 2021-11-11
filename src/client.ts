@@ -1,5 +1,4 @@
 import tmi from "tmi.js";
-import Twitch from "./api/twitch";
 import Logger from "./logger";
 import Command from "./command/command";
 import AllowCommand from "./command/allow";
@@ -8,15 +7,13 @@ import EchoCommand from "./command/echo";
 import JoinCommand from "./command/join";
 import LeaveCommand from "./command/leave";
 import PerkCommand from "./command/perk";
-import { TWITCH_CLIENT_ID, TWITCH_USERNAME, TWITCH_CHANNEL } from "./constants";
+import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 
 class Client {
-    logger = new Logger();
     commands: Command[] = [];
     main: tmi.Client;
     group: tmi.Client;
-
     clients: BotClients;
 
     constructor() {
@@ -24,34 +21,30 @@ class Client {
     }
 
     async initialize(): Promise<void> {
-        const token = await Twitch.bearerToken();
-
         this.main = new tmi.Client({
             options: {
                 debug: process.env.NODE_ENV === "development",
-                clientId: TWITCH_CLIENT_ID,
             },
             connection: {
                 reconnect: true,
             },
             identity: {
                 username: TWITCH_USERNAME,
-                password: `oauth:${token}`,
+                password: TWITCH_PASSWORD,
             },
-            channels: [`#${TWITCH_CHANNEL}`],
+            channels: [TWITCH_USERNAME!],
         });
 
         this.group = new tmi.Client({
             options: {
                 debug: process.env.NODE_ENV === "development",
-                clientId: TWITCH_CLIENT_ID,
             },
             connection: {
                 reconnect: true,
             },
             identity: {
                 username: TWITCH_USERNAME,
-                password: `oauth:${token}`,
+                password: TWITCH_PASSWORD,
             },
         });
 
@@ -71,13 +64,13 @@ class Client {
                 // }
             });
         } catch (error) {
-            this.logger.error(error);
+            Logger.error(error);
         }
     }
 
     onConnected(): void {
         this.joinChannels();
-        this.clients.main.color("Red");
+        this.clients.main.color(TWITCH_CHAT_COLOR || "GoldenRod");
         this.commands.push(
             new JoinCommand(this.clients),
             new EchoCommand(this.clients),
