@@ -11,7 +11,8 @@ class ItemCommand extends Command {
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
-        const model = Dbd.item(params.join());
+        const name = params.join(" ");
+        const model = name.length === 0 ? Dbd.randomItem() : Dbd.item(name);
 
         if (!model || model.isEmpty) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "item"));

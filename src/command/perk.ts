@@ -14,7 +14,8 @@ class PerkCommand extends Command {
         const tier = Number.isNaN(Number(params[params.length - 1]))
             ? 3
             : Number(params[params.length - 1]);
-        const model = Dbd.perk(params.join(" "));
+        const name = params.join(" ");
+        const model = name.length === 0 ? Dbd.randomPerk() : Dbd.perk(name);
 
         if (!model || model.isEmpty) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "perk"));

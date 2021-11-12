@@ -11,7 +11,8 @@ class KillerCommand extends Command {
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
-        const model = Dbd.killer(params.join());
+        const name = params.join(" ");
+        const model = name.length === 0 ? Dbd.randomKiller() : Dbd.killer(name);
 
         if (!model || model.isEmpty) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "killer"));

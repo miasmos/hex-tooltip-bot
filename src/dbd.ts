@@ -29,7 +29,7 @@ class DbdUtil {
     }
 
     static stringifyPerk(model: PerkModel): string {
-        return `[[${model.name}]] | T${model.tier} | ${DbdUtil.rarity(model.rarity)} | ${
+        return `[[${model.name} ${model.tier}]] | ${DbdUtil.rarity(model.rarity)} | ${
             model.owner.name || "All"
         } | ${Util.stripTags(model.description)}`;
     }

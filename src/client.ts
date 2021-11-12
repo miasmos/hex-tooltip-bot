@@ -12,6 +12,7 @@ import AddonCommand from "./command/addon";
 import ItemCommand from "./command/item";
 import KillerCommand from "./command/killer";
 import SurvivorCommand from "./command/survivor";
+import OfferingCommand from "./command/offering";
 import MapCommand from "./command/map";
 import PowerCommand from "./command/power";
 import RarityCommand from "./command/rarity";
@@ -19,8 +20,13 @@ import PerksCommand from "./command/perks";
 import AddonsCommand from "./command/addons";
 import RandomCommand from "./command/random";
 import GetCommand from "./command/get";
+import DonateCommand from "./command/donate";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
+
+// TODO: rate-limit commands for non-mods
+// TODO: add instructions for each command
+// TODO: update readme
 
 class Client {
     commands: Command[] = [];
@@ -96,12 +102,14 @@ class Client {
             new KillerCommand(this.clients),
             new SurvivorCommand(this.clients),
             new MapCommand(this.clients),
+            new OfferingCommand(this.clients),
             new PowerCommand(this.clients),
             new RarityCommand(this.clients),
             new PerksCommand(this.clients),
             new AddonsCommand(this.clients),
             new RandomCommand(this.clients),
-            new GetCommand(this.clients)
+            new GetCommand(this.clients),
+            new DonateCommand(this.clients)
         );
     }
 }
