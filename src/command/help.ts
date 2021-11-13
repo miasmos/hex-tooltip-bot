@@ -28,7 +28,7 @@ class HelpCommand extends Command {
 
         for (let i = 0; i < this.commands.length; i += 1) {
             const command = this.commands[i];
-            if (command.name === name && command.helpText.length > 0) {
+            if (command.name === name && command.helpText && command.helpText.length > 0) {
                 this.respond(channel, userstate, `${command.helpText} @${userstate.username}`);
             }
         }
