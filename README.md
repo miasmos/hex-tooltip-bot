@@ -110,7 +110,7 @@ Displays the tier {tier} {name} perk, or the perk that matches {name} the closes
 
 ## !perks {name}
 
-Displays the perks associated with {name}. {name} should be a killer or an item.
+Displays the perks associated with {name}. {name} should be a killer or a survivor.
 
 ## !power
 
