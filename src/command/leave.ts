@@ -1,11 +1,15 @@
 import { ChatType, BotErrorMessage, TwitchError } from "../enum";
 import BotError from "../error";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class LeaveCommand extends Command {
-    constructor(clients: BotClients) {
+    state: State;
+
+    constructor(clients: BotClients, state: State) {
         super(clients, "leave", ["!leave"], [ChatType.Command, ChatType.Whisper]);
+        this.state = state;
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
@@ -35,6 +39,7 @@ class LeaveCommand extends Command {
         }
 
         try {
+            this.state.leave(target);
             this.clients.main.part(target);
             this.respond(channel, userstate, `Left @${target}'s channel.`);
         } catch (error) {

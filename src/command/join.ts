@@ -1,11 +1,15 @@
 import { ChatType, BotErrorMessage, TwitchError } from "../enum";
 import BotError from "../error";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class JoinCommand extends Command {
-    constructor(clients: BotClients) {
+    state: State;
+
+    constructor(clients: BotClients, state: State) {
         super(clients, "join", ["!join", "!add"], [ChatType.Command, ChatType.Whisper]);
+        this.state = state;
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
@@ -26,16 +30,17 @@ class JoinCommand extends Command {
         }
 
         try {
-            // TODO: check if we were blocked
-            // if (blocked) {
-            //     this.respond(
-            //         channel,
-            //         userstate,
-            //         `I am blocked from joining @${target} 's channel.`
-            //     );
-            //     return;
-            // }
+            const isBlocked = this.state.isBlocked(target);
+            if (isBlocked) {
+                this.respond(
+                    channel,
+                    userstate,
+                    `I am blocked from joining @${target} 's channel.`
+                );
+                return;
+            }
 
+            this.state.join(target);
             this.clients.main.join(target);
             this.respond(channel, userstate, `Joined @${target}'s channel.`);
         } catch (error) {

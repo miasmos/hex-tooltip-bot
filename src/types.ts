@@ -13,4 +13,10 @@ interface UserState {
     mod: boolean;
 }
 
-export { BotClients, UserState };
+interface AppState {
+    [key: string]: unknown;
+    block: string[];
+    joined: string[];
+}
+
+export { BotClients, UserState, AppState };

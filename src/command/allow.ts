@@ -1,11 +1,15 @@
 import { ChatType, BotErrorMessage } from "../enum";
 import BotError from "../error";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class AllowCommand extends Command {
-    constructor(clients: BotClients) {
+    state: State;
+
+    constructor(clients: BotClients, state: State) {
         super(clients, "allow", ["!allow"], [ChatType.Command, ChatType.Whisper]);
+        this.state = state;
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
@@ -35,7 +39,7 @@ class AllowCommand extends Command {
         }
 
         try {
-            // TODO: persist allowed channels
+            this.state.unblock(target);
             this.respond(channel, userstate, `I can now join @${target}'s channel. PogChamp`);
         } catch (error) {
             this.error(channel, userstate);

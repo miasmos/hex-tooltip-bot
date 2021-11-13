@@ -23,6 +23,7 @@ import GetCommand from "./command/get";
 import DonateCommand from "./command/donate";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
+import State from "./state";
 
 // TODO: add instructions for each command
 // TODO: update readme
@@ -32,12 +33,15 @@ class Client {
     main: tmi.Client;
     group: tmi.Client;
     clients: BotClients;
+    state: State = new State();
 
     constructor() {
         this.initialize();
     }
 
     async initialize(): Promise<void> {
+        await this.state.ready();
+
         this.main = new tmi.Client({
             options: {
                 debug: process.env.NODE_ENV === "development",
@@ -72,13 +76,8 @@ class Client {
 
     async joinChannels(): Promise<void> {
         try {
-            const channels: string[] = [];
-            // TODO: persist current channels
-
-            channels.forEach(value => {
-                // if (!value.blocked && value.join) {
-                // this.clients.main.join(value.channel);
-                // }
+            this.state.joined().forEach(channel => {
+                this.clients.main.join(channel);
             });
         } catch (error) {
             Logger.error(error);
@@ -89,11 +88,11 @@ class Client {
         this.joinChannels();
         this.clients.main.color(TWITCH_CHAT_COLOR || "GoldenRod");
         this.commands.push(
-            new JoinCommand(this.clients),
+            new JoinCommand(this.clients, this.state),
             new EchoCommand(this.clients),
-            new LeaveCommand(this.clients),
-            new BlockCommand(this.clients),
-            new AllowCommand(this.clients),
+            new LeaveCommand(this.clients, this.state),
+            new BlockCommand(this.clients, this.state),
+            new AllowCommand(this.clients, this.state),
             new PerkCommand(this.clients),
             new OwnerCommand(this.clients),
             new AddonCommand(this.clients),
