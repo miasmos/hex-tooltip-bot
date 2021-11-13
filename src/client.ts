@@ -24,7 +24,6 @@ import DonateCommand from "./command/donate";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 
-// TODO: rate-limit commands for non-mods
 // TODO: add instructions for each command
 // TODO: update readme
 

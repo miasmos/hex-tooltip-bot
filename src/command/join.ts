@@ -37,7 +37,7 @@ class JoinCommand extends Command {
             // }
 
             this.clients.main.join(target);
-            this.respond(channel, userstate, `Joined @${target} 's channel.`);
+            this.respond(channel, userstate, `Joined @${target}'s channel.`);
         } catch (error) {
             let message: BotErrorMessage = BotErrorMessage.None;
 

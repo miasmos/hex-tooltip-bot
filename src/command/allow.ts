@@ -36,7 +36,7 @@ class AllowCommand extends Command {
 
         try {
             // TODO: persist allowed channels
-            this.respond(channel, userstate, `I can now join @${target} 's channel. PogChamp`);
+            this.respond(channel, userstate, `I can now join @${target}'s channel. PogChamp`);
         } catch (error) {
             this.error(channel, userstate);
         }

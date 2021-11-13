@@ -36,7 +36,12 @@ class BlockCommand extends Command {
 
         try {
             // TODO: persist blocked channels
-            this.respond(channel, userstate, `Left @${target} 's channel forever. BibleThump`);
+            this.respond(
+                channel,
+                userstate,
+                // eslint-disable-next-line max-len
+                `Left @${target}'s channel. I cannot be re-added unless @${target} runs the allow command.`
+            );
         } catch (error) {
             this.error(channel, userstate);
         }

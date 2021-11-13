@@ -24,10 +24,19 @@ class LeaveCommand extends Command {
             this.error(channel, userstate, new BotError(BotErrorMessage.InvalidChannel));
             return;
         }
+        if (userstate.username !== target) {
+            this.error(
+                channel,
+                userstate,
+                new BotError(BotErrorMessage.NotAllowed),
+                "Only the channel owner is allowed."
+            );
+            return;
+        }
 
         try {
             this.clients.main.part(target);
-            this.respond(channel, userstate, `Left @${target} 's channel.`);
+            this.respond(channel, userstate, `Left @${target}'s channel.`);
         } catch (error) {
             let message: BotErrorMessage = BotErrorMessage.None;
 

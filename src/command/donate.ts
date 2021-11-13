@@ -1,5 +1,4 @@
-import { ChatType, BotErrorMessage } from "../enum";
-import BotError from "../error";
+import { ChatType } from "../enum";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 

@@ -1,5 +1,6 @@
 import { BotErrorMessage, ChatType } from "../enum";
 import BotError from "../error";
+import Limiter from "../limiter";
 import { BotClients, UserState } from "../types";
 
 class Command {
@@ -8,6 +9,7 @@ class Command {
     chatTypes: ChatType[] = [];
     bound: ChatType[] = [];
     triggers: string[] = [];
+    limiter: Limiter = new Limiter(5000);
 
     constructor(
         clients: BotClients,
@@ -61,6 +63,17 @@ class Command {
             shouldExecute = true;
         } else {
             return;
+        }
+
+        const limiterKey = `${channel}.${userstate.username}`;
+        const isLimited = this.limiter.get(limiterKey);
+
+        if (isLimited) {
+            return;
+        }
+
+        if (!userstate.mod) {
+            this.limiter.set(limiterKey);
         }
 
         const params = this.params(message);

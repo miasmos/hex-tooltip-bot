@@ -10,6 +10,7 @@ interface BotClients {
 interface UserState {
     username: string;
     messageType: ChatType;
+    mod: boolean;
 }
 
 export { BotClients, UserState };
