@@ -1,6 +1,6 @@
 # Hex: Tooltip Bot
 
-The official Twitch bot for Hex: Tooltip.
+The official chat bot for Hex: Tooltip.
 
 # Getting Started
 
