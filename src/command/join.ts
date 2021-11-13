@@ -30,6 +30,15 @@ class JoinCommand extends Command {
             this.error(channel, userstate, new BotError(BotErrorMessage.InvalidChannel));
             return;
         }
+        if (userstate.username !== target) {
+            this.error(
+                channel,
+                userstate,
+                new BotError(BotErrorMessage.NotAllowed),
+                "Only the channel owner is allowed."
+            );
+            return;
+        }
 
         try {
             const isBlocked = this.state.isBlocked(target);

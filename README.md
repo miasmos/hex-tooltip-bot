@@ -62,7 +62,7 @@ Displays the {name} item, or the item that matches {name} the closest.
 
 ## !join
 
-Joins a channel if hxtbot is not blocked from joining it.
+Joins a channel if hxtbot is not blocked from joining it. Only the channel owner can use this command.
 
 ## !killer
 
