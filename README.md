@@ -104,6 +104,10 @@ Displays a random perk.
 
 Displays the {name} perk, or the perk that matches {name} the closest.
 
+## !perk {name} {tier}
+
+Displays the tier {tier} {name} perk, or the perk that matches {name} the closest. {tier} should a number between 1 and 3.
+
 ## !perks {name}
 
 Displays the perks associated with {name}. {name} should be a killer or an item.
