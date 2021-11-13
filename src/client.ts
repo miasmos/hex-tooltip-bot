@@ -26,9 +26,6 @@ import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants
 import { BotClients } from "./types";
 import State from "./state";
 
-// TODO: add instructions for each command
-// TODO: update readme
-
 class Client {
     commands: Command[] = [];
     main: tmi.Client;
