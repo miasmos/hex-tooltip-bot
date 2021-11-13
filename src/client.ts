@@ -25,6 +25,7 @@ import HelpCommand from "./command/help";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 import State from "./state";
+import PatchCommand from "./command/patch";
 
 class Client {
     commands: Command[] = [];
@@ -86,27 +87,28 @@ class Client {
         this.joinChannels();
         this.clients.main.color(TWITCH_CHAT_COLOR || "GoldenRod");
         this.commands.push(
-            new JoinCommand(this.clients, this.state),
-            new EchoCommand(this.clients),
-            new LeaveCommand(this.clients, this.state),
-            new BlockCommand(this.clients, this.state),
-            new AllowCommand(this.clients, this.state),
-            new PerkCommand(this.clients),
-            new OwnerCommand(this.clients),
             new AddonCommand(this.clients),
+            new AddonsCommand(this.clients),
+            new AllowCommand(this.clients, this.state),
+            new BlockCommand(this.clients, this.state),
+            new DonateCommand(this.clients),
+            new EchoCommand(this.clients),
+            new GetCommand(this.clients),
+            new HelpCommand(this.clients, this.commands),
             new ItemCommand(this.clients),
+            new JoinCommand(this.clients, this.state),
             new KillerCommand(this.clients),
-            new SurvivorCommand(this.clients),
+            new LeaveCommand(this.clients, this.state),
             new MapCommand(this.clients),
             new OfferingCommand(this.clients),
-            new PowerCommand(this.clients),
-            new RarityCommand(this.clients),
+            new OwnerCommand(this.clients),
+            new PatchCommand(this.clients),
+            new PerkCommand(this.clients),
             new PerksCommand(this.clients),
-            new AddonsCommand(this.clients),
+            new PowerCommand(this.clients),
             new RandomCommand(this.clients),
-            new GetCommand(this.clients),
-            new DonateCommand(this.clients),
-            new HelpCommand(this.clients, this.commands)
+            new RarityCommand(this.clients),
+            new SurvivorCommand(this.clients)
         );
     }
 }

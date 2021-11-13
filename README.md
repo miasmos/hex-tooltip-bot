@@ -96,6 +96,10 @@ Displays the {name} offering, or the offering that matches {name} the closest.
 
 Displays the owner of {name}. {name} should be a perk, power, addon or map.
 
+## !patch
+
+Displays the current patch hxtbot is on.
+
 ## !perk
 
 Displays a random perk.
