@@ -3,7 +3,7 @@
     "version": "0.0.2",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "description": "Twitch bot for Hex: Tooltip",
+    "description": "The official chat bot for Hex: Tooltip.",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/stephenpoole/hex-tooltip-bot.git"
@@ -24,8 +24,11 @@
     },
     "license": "MIT",
     "dependencies": {
+        "@discordjs/rest": "^0.1.0-canary.0",
         "@stephenpoole/deadbydaylight": "^5.3.0-1",
         "axios": "^0.24.0",
+        "discord-api-types": "^0.24.0",
+        "discord.js": "^13.3.1",
         "tmi.js": "^1.8.5"
     },
     "devDependencies": {

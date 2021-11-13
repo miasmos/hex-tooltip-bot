@@ -4,7 +4,7 @@ import Command from "./command";
 import pkg from "../../package.json";
 
 class PatchCommand extends Command {
-    helpText = "!patch - Display the current patch I'm on.";
+    helpText = "!patch - Displays the current patch I'm on.";
 
     constructor(clients: BotClients) {
         super(clients, "patch", ["!patch"], [ChatType.Command, ChatType.Whisper]);
