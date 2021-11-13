@@ -138,7 +138,7 @@ Displays the rarity of {name}. {name} should be a perk, offering, or addon.
 
 ## !survivor
 
-Displays a random survivor. | !survivor {name} - Displays the {name} survivor, or the survivor that matches {name} the closest.
+Displays a random survivor.
 
 ## !survivor {name}
 
