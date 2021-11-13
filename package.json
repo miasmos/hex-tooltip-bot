@@ -14,7 +14,7 @@
     "author": "Stephen Poole",
     "scripts": {
         "start": "npm run prod",
-        "prod": "webpack --mode=production && npm run docs",
+        "prod": "webpack --mode=production",
         "dev": "webpack -w --mode=development",
         "test": "nyc mocha --file ./test/setup.ts -r ts-node/register test/**/*.spec.ts",
         "coverage": "nyc --reporter=lcov npm test",
