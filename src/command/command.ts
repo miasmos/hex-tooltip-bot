@@ -10,6 +10,7 @@ class Command {
     bound: ChatType[] = [];
     triggers: string[] = [];
     limiter: Limiter = new Limiter(5000);
+    helpText: string;
 
     constructor(
         clients: BotClients,

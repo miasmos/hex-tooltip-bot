@@ -11,6 +11,7 @@ enum BotErrorMessage {
     MissingChannel = "Channel is required.",
     InvalidChannel = "Invalid channel.",
     ModelNotFound = "That's not a valid $0.",
+    ParamRequired = "You need to specify $0.",
     Generic = "An error occurred.",
     None = "",
 }

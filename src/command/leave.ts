@@ -5,6 +5,7 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class LeaveCommand extends Command {
+    helpText = "!leave - Leaves a channel. Only the channel owner can use this command.";
     state: State;
 
     constructor(clients: BotClients, state: State) {

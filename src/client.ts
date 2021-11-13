@@ -21,6 +21,7 @@ import AddonsCommand from "./command/addons";
 import RandomCommand from "./command/random";
 import GetCommand from "./command/get";
 import DonateCommand from "./command/donate";
+import HelpCommand from "./command/help";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 import State from "./state";
@@ -107,7 +108,8 @@ class Client {
             new AddonsCommand(this.clients),
             new RandomCommand(this.clients),
             new GetCommand(this.clients),
-            new DonateCommand(this.clients)
+            new DonateCommand(this.clients),
+            new HelpCommand(this.clients, this.commands)
         );
     }
 }

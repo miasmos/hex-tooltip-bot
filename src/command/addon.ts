@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class AddonCommand extends Command {
+    helpText =
+        "!addon - Displays a random killer addon or item addon. | !addon {name} - Displays the {name} addon, or the addon that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "addon", ["!addon"], [ChatType.Command, ChatType.Whisper]);
     }

@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class PerksCommand extends Command {
+    helpText =
+        "!perks {name} - Displays the perks associated with {name}. {name} should be a killer or an item.";
+
     constructor(clients: BotClients) {
         super(clients, "perks", ["!perks"], [ChatType.Command, ChatType.Whisper]);
     }

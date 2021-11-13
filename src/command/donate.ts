@@ -3,6 +3,8 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class DonateCommand extends Command {
+    helpText = "!donate - Display information about donating to support Hex: Tooltip.";
+
     constructor(clients: BotClients) {
         super(clients, "donate", ["!donate"], [ChatType.Command, ChatType.Whisper]);
     }

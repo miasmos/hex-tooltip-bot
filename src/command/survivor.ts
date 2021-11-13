@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class SurvivorCommand extends Command {
+    helpText =
+        "!survivor - Displays a random survivor. | !survivor {name} - Displays the {name} survivor, or the survivor that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "survivor", ["!survivor"], [ChatType.Command, ChatType.Whisper]);
     }

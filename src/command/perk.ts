@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class PerkCommand extends Command {
+    helpText =
+        "!perk - Displays a random perk. | !perk {name} - Displays the {name} perk, or the perk that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "perk", ["!perk"], [ChatType.Command, ChatType.Whisper]);
     }

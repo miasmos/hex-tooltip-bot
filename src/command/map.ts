@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class MapCommand extends Command {
+    helpText =
+        "!map - Displays a random map. | !map {name} - Displays the {name} map, or the map that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "map", ["!map"], [ChatType.Command, ChatType.Whisper]);
     }

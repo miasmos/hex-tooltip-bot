@@ -5,6 +5,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class GetCommand extends Command {
+    helpText =
+        "!get - Displays a random Dbd perk, addon, item, killer, survivor, power, or map. | !get {name} - Displays the perk, addon, item, killer, survivor, power, or map that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "get", ["!get"], [ChatType.Command, ChatType.Whisper]);
     }

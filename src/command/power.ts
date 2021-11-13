@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class PowerCommand extends Command {
+    helpText =
+        "!power - Displays a random power. | !power {name} - Displays the {name} power, or the power that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "power", ["!power"], [ChatType.Command, ChatType.Whisper]);
     }

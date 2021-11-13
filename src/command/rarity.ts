@@ -6,11 +6,25 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class RarityCommand extends Command {
+    helpText =
+        "!rarity {name} - Displays the rarity of {name}. {name} should be a perk, offering, or addon.";
+
     constructor(clients: BotClients) {
         super(clients, "rarity", ["!rarity"], [ChatType.Command, ChatType.Whisper]);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
+        const [name] = params;
+
+        if (!name) {
+            this.error(
+                channel,
+                userstate,
+                new BotError(BotErrorMessage.ParamRequired, "a perk, offering, or addon")
+            );
+            return;
+        }
+
         const tier = Number.isNaN(Number(params[params.length - 1]))
             ? 3
             : Number(params[params.length - 1]);

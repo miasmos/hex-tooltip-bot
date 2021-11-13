@@ -5,6 +5,8 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class JoinCommand extends Command {
+    helpText = "!join - Joins a channel if I'm not blocked from joining it.";
+
     state: State;
 
     constructor(clients: BotClients, state: State) {

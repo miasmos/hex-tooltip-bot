@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class KillerCommand extends Command {
+    helpText =
+        "!killer - Displays a random killer. | !killer {name} - Displays the {name} killer, or the killer that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "killer", ["!killer"], [ChatType.Command, ChatType.Whisper]);
     }

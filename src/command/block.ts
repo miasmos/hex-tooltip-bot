@@ -6,6 +6,8 @@ import Command from "./command";
 
 class BlockCommand extends Command {
     state: State;
+    helpText =
+        "!block - Blocks me from joining a channel, and leaves the channel if I'm currently in it. Only the channel owner can use this command.";
 
     constructor(clients: BotClients, state: State) {
         super(clients, "block", ["!block"], [ChatType.Command, ChatType.Whisper]);

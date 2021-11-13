@@ -6,11 +6,24 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class AddonsCommand extends Command {
+    helpText =
+        "!addons {name} - Displays the addons associated with {name}. {name} should be a killer or an item.";
+
     constructor(clients: BotClients) {
         super(clients, "addons", ["!addons"], [ChatType.Command, ChatType.Whisper]);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
+        const [name] = params;
+
+        if (!name) {
+            this.error(
+                channel,
+                userstate,
+                new BotError(BotErrorMessage.ParamRequired, "a killer or item")
+            );
+            return;
+        }
         const model = Dbd.get(params.join(" "));
 
         if (!model || model.isEmpty) {

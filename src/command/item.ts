@@ -6,6 +6,9 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class ItemCommand extends Command {
+    helpText =
+        "!item - Displays a random item. | !item {name} - Displays the {name} item, or the item that matches {name} the closest.";
+
     constructor(clients: BotClients) {
         super(clients, "item", ["!item"], [ChatType.Command, ChatType.Whisper]);
     }
