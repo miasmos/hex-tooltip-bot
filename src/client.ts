@@ -22,6 +22,7 @@ import RandomCommand from "./command/random";
 import GetCommand from "./command/get";
 import DonateCommand from "./command/donate";
 import HelpCommand from "./command/help";
+import ChannelsCommand from "./command/channels";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 import State from "./state";
@@ -108,7 +109,8 @@ class Client {
             new PowerCommand(this.clients),
             new RandomCommand(this.clients),
             new RarityCommand(this.clients),
-            new SurvivorCommand(this.clients)
+            new SurvivorCommand(this.clients),
+            new ChannelsCommand(this.clients, this.state)
         );
     }
 }
