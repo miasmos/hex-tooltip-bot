@@ -1,6 +1,10 @@
+<img src="https://hextooltip.com/logo.svg" width="100" height="100">
+
 # Hex: Tooltip Bot
 
-The official chat bot for Hex: Tooltip.
+[![Known Vulnerabilities](https://snyk.io/test/github/stephenpoole/hex-tooltip-bot/badge.svg)](https://snyk.io/test/github/stephenpoole/hex-tooltip-bot)
+![last commit](https://img.shields.io/github/last-commit/stephenpoole/hex-tooltip-bot)
+![issues](https://img.shields.io/github/issues/stephenpoole/hex-tooltip-bot)
 
 # Getting Started
 
