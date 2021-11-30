@@ -6,6 +6,8 @@
 ![last commit](https://img.shields.io/github/last-commit/stephenpoole/hex-tooltip-bot)
 ![issues](https://img.shields.io/github/issues/stephenpoole/hex-tooltip-bot)
 
+The official chatbot for Hex: Tooltip.
+
 # Getting Started
 
 To add `hxtbot` to your channel, go to [hxtbot's Twitch channel](https://twitch.tv/hxtbot) and enter the `!join` command into chat.
