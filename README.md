@@ -48,7 +48,7 @@ Displays a random Dbd perk, addon, item, killer, survivor, power, or map.
 
 ## !get {name}
 
-Displays the perk, addon, item, killer, survivor, power, or map that matches {name} the closest.
+Displays the perk, addon, item, killer, survivor, power, offering, or map that matches {name} the closest.
 
 ## !help
 
@@ -132,7 +132,7 @@ Displays the {name} power, or the power that matches {name} the closest.
 
 ## !random
 
-Displays a random Dbd perk, addon, item, killer, survivor, power, or map.
+Displays a random Dbd perk, addon, item, offering, killer, survivor, power, or map.
 
 ## !random {type}
 
