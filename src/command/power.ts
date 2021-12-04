@@ -29,7 +29,7 @@ class PowerCommand extends Command {
             this.respond(
                 channel,
                 userstate,
-                `${DbdUtil.stringify(killer.power as PowerModel)} @${userstate.username}`
+                `${DbdUtil.stringify(killer?.power as PowerModel)} @${userstate.username}`
             );
             return;
         }
