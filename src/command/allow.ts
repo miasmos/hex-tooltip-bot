@@ -5,13 +5,11 @@ import { BotClients, UserState } from "../types";
 import Command from "./command";
 
 class AllowCommand extends Command {
-    state: State;
     helpText =
         "!allow - If blocked, allows me to join the channel again. Only the channel owner can use this command.";
 
     constructor(clients: BotClients, state: State) {
-        super(clients, "allow", ["!allow"], [ChatType.Command, ChatType.Whisper]);
-        this.state = state;
+        super(clients, "allow", ["!allow"], [ChatType.Command, ChatType.Whisper], state);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {

@@ -1,6 +1,7 @@
 import { BotErrorMessage, ChatType } from "../enum";
 import BotError from "../error";
 import Limiter from "../limiter";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 
 class Command {
@@ -11,17 +12,20 @@ class Command {
     triggers: string[] = [];
     limiter: Limiter = new Limiter(5000);
     helpText: string;
+    state: State;
 
     constructor(
         clients: BotClients,
         name = "Command",
         triggers: string[] = [],
-        chatTypes: ChatType[] = [ChatType.Command]
+        chatTypes: ChatType[] = [ChatType.Command],
+        state: State
     ) {
         this.clients = clients;
         this.triggers = triggers;
         this.name = name;
         this.chatTypes = chatTypes;
+        this.state = state;
         this.bound = [];
 
         if (typeof this.triggers === "string") {

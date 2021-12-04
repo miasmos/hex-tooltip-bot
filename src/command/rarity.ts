@@ -1,7 +1,8 @@
-import { ModifierType, PerkModel } from "@stephenpoole/deadbydaylight";
+import { Language, ModifierType, PerkModel } from "@stephenpoole/deadbydaylight";
 import Dbd, { DbdUtil } from "../dbd";
 import { BotErrorMessage, ChatType } from "../enum";
 import BotError from "../error";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
@@ -9,8 +10,8 @@ class RarityCommand extends Command {
     helpText =
         "!rarity {name} - Displays the rarity of {name}. {name} should be a perk, offering, or addon.";
 
-    constructor(clients: BotClients) {
-        super(clients, "rarity", ["!rarity"], [ChatType.Command, ChatType.Whisper]);
+    constructor(clients: BotClients, state: State) {
+        super(clients, "rarity", ["!rarity"], [ChatType.Command, ChatType.Whisper], state);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
@@ -28,7 +29,8 @@ class RarityCommand extends Command {
         const tier = Number.isNaN(Number(params[params.length - 1]))
             ? 3
             : Number(params[params.length - 1]);
-        const model = Dbd.get(params.join());
+        const language = this.state.getLanguage(userstate.username) || Language.English;
+        const model = Dbd.get(params.join(), language);
 
         if (!model || model.isEmpty) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "thing"));

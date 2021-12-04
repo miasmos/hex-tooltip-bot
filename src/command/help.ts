@@ -1,4 +1,5 @@
 import { ChatType } from "../enum";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
@@ -6,8 +7,8 @@ class HelpCommand extends Command {
     commands: Command[];
     helpText = "Very funny.";
 
-    constructor(clients: BotClients, commands: Command[]) {
-        super(clients, "help", ["!help"], [ChatType.Command, ChatType.Whisper]);
+    constructor(clients: BotClients, commands: Command[], state: State) {
+        super(clients, "help", ["!help"], [ChatType.Command, ChatType.Whisper], state);
         this.commands = commands;
     }
 

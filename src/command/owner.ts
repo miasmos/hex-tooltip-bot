@@ -1,6 +1,8 @@
+import { Language } from "@stephenpoole/deadbydaylight";
 import Dbd from "../dbd";
 import { BotErrorMessage, ChatType } from "../enum";
 import BotError from "../error";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
@@ -8,8 +10,8 @@ class OwnerCommand extends Command {
     helpText =
         "!owner {name} - Displays the owner of {name}. {name} should be a perk, power, addon or map.";
 
-    constructor(clients: BotClients) {
-        super(clients, "owner", ["!owner"], [ChatType.Command, ChatType.Whisper]);
+    constructor(clients: BotClients, state: State) {
+        super(clients, "owner", ["!owner"], [ChatType.Command, ChatType.Whisper], state);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
@@ -23,7 +25,8 @@ class OwnerCommand extends Command {
             );
             return;
         }
-        const model = Dbd.get(params.join());
+        const language = this.state.getLanguage(userstate.username) || Language.English;
+        const model = Dbd.get(params.join(), language);
 
         if (!model || model.isEmpty) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "thing"));

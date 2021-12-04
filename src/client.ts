@@ -23,10 +23,11 @@ import GetCommand from "./command/get";
 import DonateCommand from "./command/donate";
 import HelpCommand from "./command/help";
 import ChannelsCommand from "./command/channels";
+import PatchCommand from "./command/patch";
+import LanguageCommand from "./command/language";
 import { TWITCH_CHAT_COLOR, TWITCH_USERNAME, TWITCH_PASSWORD } from "./constants";
 import { BotClients } from "./types";
 import State from "./state";
-import PatchCommand from "./command/patch";
 
 class Client {
     commands: Command[] = [];
@@ -88,29 +89,30 @@ class Client {
         this.joinChannels();
         this.clients.main.color(TWITCH_CHAT_COLOR || "GoldenRod");
         this.commands.push(
-            new AddonCommand(this.clients),
-            new AddonsCommand(this.clients),
+            new AddonCommand(this.clients, this.state),
+            new AddonsCommand(this.clients, this.state),
             new AllowCommand(this.clients, this.state),
             new BlockCommand(this.clients, this.state),
-            new DonateCommand(this.clients),
-            new EchoCommand(this.clients),
-            new GetCommand(this.clients),
-            new HelpCommand(this.clients, this.commands),
-            new ItemCommand(this.clients),
+            new DonateCommand(this.clients, this.state),
+            new EchoCommand(this.clients, this.state),
+            new GetCommand(this.clients, this.state),
+            new HelpCommand(this.clients, this.commands, this.state),
+            new ItemCommand(this.clients, this.state),
             new JoinCommand(this.clients, this.state),
-            new KillerCommand(this.clients),
+            new KillerCommand(this.clients, this.state),
             new LeaveCommand(this.clients, this.state),
-            new MapCommand(this.clients),
-            new OfferingCommand(this.clients),
-            new OwnerCommand(this.clients),
-            new PatchCommand(this.clients),
-            new PerkCommand(this.clients),
-            new PerksCommand(this.clients),
-            new PowerCommand(this.clients),
-            new RandomCommand(this.clients),
-            new RarityCommand(this.clients),
-            new SurvivorCommand(this.clients),
-            new ChannelsCommand(this.clients, this.state)
+            new MapCommand(this.clients, this.state),
+            new OfferingCommand(this.clients, this.state),
+            new OwnerCommand(this.clients, this.state),
+            new PatchCommand(this.clients, this.state),
+            new PerkCommand(this.clients, this.state),
+            new PerksCommand(this.clients, this.state),
+            new PowerCommand(this.clients, this.state),
+            new RandomCommand(this.clients, this.state),
+            new RarityCommand(this.clients, this.state),
+            new SurvivorCommand(this.clients, this.state),
+            new ChannelsCommand(this.clients, this.state),
+            new LanguageCommand(this.clients, this.state)
         );
     }
 }

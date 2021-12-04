@@ -1,3 +1,4 @@
+import { Language } from "@stephenpoole/deadbydaylight";
 import Store from "./store";
 import { AppState } from "./types";
 
@@ -8,7 +9,28 @@ class State {
         this.store.data = {
             block: [],
             joined: [],
+            language: {},
         };
+    }
+
+    getLanguage(user: string): Language {
+        const { language } = this.store.data;
+        if (user in language) {
+            return language[user];
+        }
+        return Language.English;
+    }
+
+    setLanguage(user: string, newLanguage: Language): void {
+        const { language } = this.store.data;
+        if (newLanguage === Language.English) {
+            if (user in language) {
+                delete language[user];
+            }
+            return;
+        }
+
+        language[user] = newLanguage;
     }
 
     isBlocked(key: string): boolean {

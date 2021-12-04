@@ -1,7 +1,8 @@
-import { PowerModel } from "@stephenpoole/deadbydaylight";
+import { Language, PowerModel } from "@stephenpoole/deadbydaylight";
 import Dbd, { DbdUtil } from "../dbd";
 import { BotErrorMessage, ChatType } from "../enum";
 import BotError from "../error";
+import State from "../state";
 import { BotClients, UserState } from "../types";
 import Command from "./command";
 
@@ -9,14 +10,15 @@ class PowerCommand extends Command {
     helpText =
         "!power - Displays a random power. | !power {name} - Displays the {name} power, or the power that matches {name} the closest.";
 
-    constructor(clients: BotClients) {
-        super(clients, "power", ["!power"], [ChatType.Command, ChatType.Whisper]);
+    constructor(clients: BotClients, state: State) {
+        super(clients, "power", ["!power"], [ChatType.Command, ChatType.Whisper], state);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
+        const language = this.state.getLanguage(userstate.username) || Language.English;
         const name = params.join(" ");
-        const power = name.length === 0 ? Dbd.randomPower() : Dbd.power(name);
-        const killer = name.length > 0 ? Dbd.killer(name) : undefined;
+        const power = name.length === 0 ? Dbd.randomPower(language) : Dbd.power(name, language);
+        const killer = name.length > 0 ? Dbd.killer(name, language) : undefined;
         const hasPower = power && !power.isEmpty;
         const hasKiller = killer && !killer.isEmpty;
 

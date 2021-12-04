@@ -11,7 +11,8 @@ import DeadByDaylight, {
     PowerModel,
     PlayerType,
     Difficulty,
-} from "@stephenpoole/deadbydaylight";
+    Language,
+} from "@stephenpoole/deadbydaylight/all";
 import Util from "./util";
 
 const client = DeadByDaylight();
@@ -176,59 +177,94 @@ class DbdUtil {
         }
     }
 
-    static random(modifier: ModifierType, player?: PlayerType): AnyModel | undefined {
+    static random(
+        modifier: ModifierType,
+        player?: PlayerType,
+        language: Language = Language.English
+    ): AnyModel | undefined {
         switch (modifier as unknown as ModifierType) {
             case ModifierType.Addon: {
                 if (player === PlayerType.Killer) {
-                    return client.randomKillerAddon() as unknown as AnyModel;
+                    return client.randomKillerAddon(language) as unknown as AnyModel;
                 }
                 if (player === PlayerType.Survivor) {
-                    return client.randomSurvivorAddon() as unknown as AnyModel;
+                    return client.randomSurvivorAddon(language) as unknown as AnyModel;
                 }
-                return client.randomAddon() as unknown as AnyModel;
+                return client.randomAddon(language) as unknown as AnyModel;
             }
             case ModifierType.Item:
-                return client.randomItem();
+                return client.randomItem(language);
             case ModifierType.Map:
-                return client.randomMap();
+                return client.randomMap(language);
             case ModifierType.Offering: {
                 if (player === PlayerType.Killer) {
-                    return client.randomKillerOffering();
+                    return client.randomKillerOffering(language);
                 }
                 if (player === PlayerType.Survivor) {
-                    return client.randomSurvivorOffering();
+                    return client.randomSurvivorOffering(language);
                 }
-                return client.randomOffering();
+                return client.randomOffering(language);
             }
             case ModifierType.Perk: {
                 if (player === PlayerType.Killer) {
-                    return client.randomKillerPerk();
+                    return client.randomKillerPerk(language);
                 }
                 if (player === PlayerType.Survivor) {
-                    return client.randomSurvivorPerk();
+                    return client.randomSurvivorPerk(language);
                 }
-                return client.randomPerk();
+                return client.randomPerk(language);
             }
             case ModifierType.Player: {
                 if (player === PlayerType.Killer) {
-                    return client.randomKiller();
+                    return client.randomKiller(language);
                 }
                 if (player === PlayerType.Survivor) {
-                    return client.randomSurvivor();
+                    return client.randomSurvivor(language);
                 }
-                return client.randomPlayer();
+                return client.randomPlayer(language);
             }
             case ModifierType.Power:
-                return client.randomPower();
+                return client.randomPower(language);
             default: {
                 if (player === PlayerType.Killer) {
-                    return client.randomKiller();
+                    return client.randomKiller(language);
                 }
                 if (player === PlayerType.Survivor) {
-                    return client.randomSurvivor();
+                    return client.randomSurvivor(language);
                 }
-                return client.random([], []);
+                return client.random([], [], language);
             }
+        }
+    }
+
+    static getLanguage(language: string): Language | undefined {
+        switch (language) {
+            case "en":
+                return Language.English;
+            case "zh":
+                return Language.Chinese;
+            case "fr":
+                return Language.French;
+            case "de":
+                return Language.German;
+            case "it":
+                return Language.Italian;
+            case "jp":
+                return Language.Japanese;
+            case "ko":
+                return Language.Korean;
+            case "pl":
+                return Language.Polish;
+            case "ru":
+                return Language.Russian;
+            case "es":
+                return Language.Spanish;
+            case "th":
+                return Language.Taiwanese;
+            case "tr":
+                return Language.Turkish;
+            default:
+                return undefined;
         }
     }
 }

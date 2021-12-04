@@ -8,7 +8,7 @@ class ChannelsCommand extends Command {
     state: State;
 
     constructor(clients: BotClients, state: State) {
-        super(clients, "channels", ["!channels"], [ChatType.Whisper]);
+        super(clients, "channels", ["!channels"], [ChatType.Whisper], state);
         this.state = state;
     }
 

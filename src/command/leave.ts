@@ -6,11 +6,9 @@ import Command from "./command";
 
 class LeaveCommand extends Command {
     helpText = "!leave - Leaves a channel. Only the channel owner can use this command.";
-    state: State;
 
     constructor(clients: BotClients, state: State) {
-        super(clients, "leave", ["!leave"], [ChatType.Command, ChatType.Whisper]);
-        this.state = state;
+        super(clients, "leave", ["!leave"], [ChatType.Command, ChatType.Whisper], state);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {

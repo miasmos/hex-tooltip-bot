@@ -7,11 +7,8 @@ import Command from "./command";
 class JoinCommand extends Command {
     helpText = "!join - Joins a channel if I'm not blocked from joining it.";
 
-    state: State;
-
     constructor(clients: BotClients, state: State) {
-        super(clients, "join", ["!join", "!add"], [ChatType.Command, ChatType.Whisper]);
-        this.state = state;
+        super(clients, "join", ["!join", "!add"], [ChatType.Command, ChatType.Whisper], state);
     }
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
