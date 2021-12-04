@@ -17,16 +17,17 @@ class LanguageCommand extends Command {
         const [languageParam] = params;
         const language = DbdUtil.getLanguage(languageParam);
 
-        if (language) {
+        if (!language) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "language"));
-        } else {
-            this.state.setLanguage(userstate.username, language!);
-            this.respond(
-                channel,
-                userstate,
-                `My language is now set to ${language} in your chat. @${userstate.username}`
-            );
+            return;
         }
+
+        this.state.setLanguage(userstate.username, language!);
+        this.respond(
+            channel,
+            userstate,
+            `My language is now set to ${language} in your chat. @${userstate.username}`
+        );
     }
 }
 

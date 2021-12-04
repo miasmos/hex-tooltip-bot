@@ -76,6 +76,8 @@ class State {
         if (this.store.empty) {
             this.clear();
             this.store.empty = false;
+        } else if (!("language" in this.store.data)) {
+            this.store.data.language = {};
         }
     }
 }
