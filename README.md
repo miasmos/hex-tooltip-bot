@@ -122,7 +122,7 @@ Displays a random power.
 
 ## !power {name}
 
-Displays the {name} power, or the power that matches {name} the closest.
+Displays the {name} power, or the power that matches {name} the closest. You may instead specify the killer the power belongs to.
 
 ## !random
 

@@ -15,14 +15,30 @@ class PowerCommand extends Command {
 
     execute(channel: string, userstate: UserState, params: string[] = []): void {
         const name = params.join(" ");
-        const model = name.length === 0 ? Dbd.randomPower() : Dbd.power(name);
+        const power = name.length === 0 ? Dbd.randomPower() : Dbd.power(name);
+        const killer = name.length > 0 ? Dbd.killer(name) : undefined;
+        const hasPower = power && !power.isEmpty;
+        const hasKiller = killer && !killer.isEmpty;
 
-        if (!model || model.isEmpty) {
+        if (!hasPower && !hasKiller) {
             this.error(channel, userstate, new BotError(BotErrorMessage.ModelNotFound, "power"));
-        } else {
-            const power = model as PowerModel;
-            this.respond(channel, userstate, `${DbdUtil.stringify(power)} @${userstate.username}`);
+            return;
         }
+
+        if (hasKiller) {
+            this.respond(
+                channel,
+                userstate,
+                `${DbdUtil.stringify(killer.power as PowerModel)} @${userstate.username}`
+            );
+            return;
+        }
+
+        this.respond(
+            channel,
+            userstate,
+            `${DbdUtil.stringify(power as PowerModel)} @${userstate.username}`
+        );
     }
 }
 
