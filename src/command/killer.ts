@@ -1,4 +1,4 @@
-import { PlayerModel } from "@stephenpoole/deadbydaylight";
+import { Language, PlayerModel } from "@stephenpoole/deadbydaylight";
 import Dbd, { DbdUtil } from "../dbd";
 import { BotErrorMessage, ChatType } from "../enum";
 import BotError from "../error";
