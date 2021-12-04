@@ -142,6 +142,10 @@ Displays a random {type}. {type} should be one of [survivor|killer|power|item|ad
 
 Displays {count} random Dbd {type}s. {count} should be a number between 1 and 10.
 
+## !random {type} {player}
+
+Displays a random Dbd {type} filtered by {player}. {player} should be one of [survivor|killer].
+
 ## !random {type} {count} {player}
 
 Displays {count} random Dbd {type}s filtered by {player}. {player} should be one of [survivor|killer].
