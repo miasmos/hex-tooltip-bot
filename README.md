@@ -1,6 +1,12 @@
+<img src="https://hextooltip.com/logo.svg" width="100" height="100">
+
 # Hex: Tooltip Bot
 
-The official chat bot for Hex: Tooltip.
+[![Known Vulnerabilities](https://snyk.io/test/github/stephenpoole/hex-tooltip-bot/badge.svg)](https://snyk.io/test/github/stephenpoole/hex-tooltip-bot)
+![last commit](https://img.shields.io/github/last-commit/stephenpoole/hex-tooltip-bot)
+![issues](https://img.shields.io/github/issues/stephenpoole/hex-tooltip-bot)
+
+The official chatbot for Hex: Tooltip.
 
 # Getting Started
 
@@ -42,7 +48,7 @@ Displays a random Dbd perk, addon, item, killer, survivor, power, or map.
 
 ## !get {name}
 
-Displays the perk, addon, item, killer, survivor, power, or map that matches {name} the closest.
+Displays the perk, addon, item, killer, survivor, power, offering, or map that matches {name} the closest.
 
 ## !help
 
@@ -126,7 +132,7 @@ Displays the {name} power, or the power that matches {name} the closest. You may
 
 ## !random
 
-Displays a random Dbd perk, addon, item, killer, survivor, power, or map.
+Displays a random Dbd perk, addon, item, offering, killer, survivor, power, or map.
 
 ## !random {type}
 
