@@ -78,10 +78,6 @@ Displays a random killer.
 
 Displays the {name} killer, or the killer that matches {name} the closest.
 
-## !language
-
-Changes hxtbot's language in chat. Only the channel owner can use this command. {name} should be one of [en|es|de|fr|it|jp|ko|pl|ru|th|tr|zh].
-
 ## !leave
 
 Leaves a channel. Only the channel owner can use this command.
