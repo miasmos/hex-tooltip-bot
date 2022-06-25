@@ -12,10 +12,6 @@ The official chatbot for Hex: Tooltip.
 
 To add `hxtbot` to your channel, go to [hxtbot's Twitch channel](https://twitch.tv/hxtbot) and enter the `!join` command into chat.
 
-# Support
-
-To support the development of Hex: Tooltip, head over to [hextooltip.com](https://hextooltip.com) and click the Donate button. Any donations are greatly appreciated.
-
 # Commands
 
 ## !addon
